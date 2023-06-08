@@ -2,9 +2,21 @@
   "name": "md-maker",
   "version": "0.0.1",
   "description": "Generate markdown based on js configuration.",
-  "main": "index.js",
+  "main": "lib/index.js",
+  "sideEffects": false,
+  "type": "module",
+  "files": [
+    "lib/"
+  ],
+  "types": "lib/index.d.ts",
+  "typings": "lib/index.d.ts",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "prepare": "husky install",
+    "build:clean": "tsc --build --clean",
+    "build:es": "tsc",
+    "build:watch": "tsc --watch",
+    "build": "npm run build:clean && npm run build:es",
+    "release": "npm run build && rltb"
   },
   "repository": {
     "type": "git",
@@ -20,5 +32,22 @@
   "bugs": {
     "url": "https://github.com/nmsn/md-maker/issues"
   },
-  "homepage": "https://github.com/nmsn/md-maker#readme"
+  "homepage": "https://github.com/nmsn/md-maker#readme",
+  "devDependencies": {
+    "@types/node": "^20.1.1",
+    "@typescript-eslint/eslint-plugin": "^5.47.0",
+    "@typescript-eslint/parser": "^5.47.0",
+    "eslint": "^8.30.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-prettier": "^4.2.1",
+    "husky": "^8.0.2",
+    "lint-staged": "^13.1.0",
+    "prettier": "^2.8.1",
+    "release-toolbox": "0.2.0",
+    "tslib": "^2.4.1",
+    "typescript": "^5.0.3"
+  },
+  "engines": {
+    "node": ">=16"
+  }
 }
