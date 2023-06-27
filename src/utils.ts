@@ -1,59 +1,24 @@
-import os from 'os';
+import fs from 'fs';
+import path from 'path';
 
-export const LF = os.EOL;
-export const ParagraphDividingLine = `${LF}${LF}`;
+import { LF } from './md.js';
 
-const paragraph = (content: string[]) => {
-  return content.join(ParagraphDividingLine);
+//往固定的行写入数据
+export const writeFileToLine = (fileName: string, content: string, line = 0) => {
+  const _path = path.resolve('./', fileName);
+
+  // 计算行
+  const rows = fs.readFileSync(_path, 'utf8').split(LF);
+  const _content = (!content.endsWith(LF) ? `${content}${LF}` : content).split(LF);
+
+  // 在相应的行插入内容
+  rows.splice(line, 0, ..._content);
+  const outputMd = rows.map((item) => (item === '' ? LF : `${item}${LF}`)).join('');
+
+  fs.writeFileSync(_path, outputMd);
 };
 
-const heading = (title: string, level: number) => {
-  return `${'#'.repeat(level)} ${title}`;
-};
-
-const blockquote = (text: string) => {
-  return `> ${text}`;
-};
-
-const link = (title: string, url: string) => {
-  return `[${title}](${url})`;
-};
-
-const table = (header: string[], content: string[][]) => {
-  const content2TableRow = (row: string[]) => {
-    return `|${row.join('|')}|`;
-  };
-
-  const headerRow = content2TableRow(header);
-
-  const divider = content2TableRow(Array(header?.length).fill('---'));
-
-  const contentRow = content.map((item) => content2TableRow(item));
-
-  return [headerRow, divider, ...contentRow].join(LF);
-};
-
-type HeadingParamsType = { type: 'h1' | 'h2' | 'h3' | 'h4' | 'h5'; params: string };
-type BlockquoteParamsType = { type: 'blockquote'; params: string };
-type LinkParamsType = { type: 'link'; params: [title: string, url: string] };
-type TableParamsType = { type: 'table'; params: [header: string[], content: string[][]] };
-
-type DataType = (HeadingParamsType | BlockquoteParamsType | LinkParamsType | TableParamsType)[];
-
-export const write = (data: DataType) => {
-  const headingMap = Array(5)
-    .fill(undefined)
-    .map((_, index) => index + 1)
-    .map((item) => [`h${item}`, (title: string) => heading(title, item)]);
-
-  const headingObj = Object.fromEntries(headingMap);
-
-  const funcMap = {
-    ...headingObj,
-    blockquote,
-    link,
-    table,
-  };
-
-  return paragraph(data.map(({ type, params }) => funcMap[type](...params)));
+export const createNewFile = (fileName: string, content: string) => {
+  const _path = path.resolve('./', fileName);
+  fs.writeFileSync(_path, content);
 };
