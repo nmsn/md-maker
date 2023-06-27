@@ -1,25 +1,25 @@
 import os from 'os';
 
-const LF = os.EOL;
-const ParagraphDividingLine = `${LF}${LF}`;
+export const LF = os.EOL;
+export const ParagraphDividingLine = `${LF}${LF}`;
 
-export const paragraph = (content: string[]) => {
+const paragraph = (content: string[]) => {
   return content.join(ParagraphDividingLine);
 };
 
-export const heading = (title: string, level: number) => {
+const heading = (title: string, level: number) => {
   return `${'#'.repeat(level)} ${title}`;
 };
 
-export const blockquote = (text: string) => {
+const blockquote = (text: string) => {
   return `> ${text}`;
 };
 
-export const link = (title: string, url: string) => {
+const link = (title: string, url: string) => {
   return `[${title}](${url})`;
 };
 
-export const table = (header: string[], content: string[][]) => {
+const table = (header: string[], content: string[][]) => {
   const content2TableRow = (row: string[]) => {
     return `|${row.join('|')}|`;
   };
@@ -29,8 +29,6 @@ export const table = (header: string[], content: string[][]) => {
   const divider = content2TableRow(Array(header?.length).fill('---'));
 
   const contentRow = content.map((item) => content2TableRow(item));
-
-  console.log([headerRow, divider, content, ...contentRow]);
 
   return [headerRow, divider, ...contentRow].join(LF);
 };
