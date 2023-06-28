@@ -1,9 +1,9 @@
-import { writeFileToLine } from './utils.js';
-import { write } from './md.js';
+import { insertMd } from './utils.js';
+import { md } from './md.js';
 
-writeFileToLine(
+insertMd(
   'TEST.md',
-  write([
+  md([
     { type: 'h1', params: '123' },
     { type: 'h2', params: '123' },
     { type: 'h3', params: '123' },

@@ -1,10 +1,9 @@
 import fs from 'fs';
 import path from 'path';
-
 import { LF } from './md.js';
 
 //往固定的行写入数据
-export const writeFileToLine = (fileName: string, content: string, line = 0) => {
+export const insertMd = (fileName: string, content: string, line = 0) => {
   const _path = path.resolve('./', fileName);
 
   // 计算行
@@ -18,7 +17,7 @@ export const writeFileToLine = (fileName: string, content: string, line = 0) => 
   fs.writeFileSync(_path, outputMd);
 };
 
-export const createNewFile = (fileName: string, content: string) => {
+export const createMd = (fileName: string, content: string) => {
   const _path = path.resolve('./', fileName);
   fs.writeFileSync(_path, content);
 };

@@ -40,7 +40,7 @@ type TableParamsType = { type: 'table'; params: [header: string[], content: stri
 
 type DataType = (HeadingParamsType | BlockquoteParamsType | LinkParamsType | TableParamsType)[];
 
-export const write = (data: DataType) => {
+export const md = (data: DataType) => {
   const headingMap = Array(5)
     .fill(undefined)
     .map((_, index) => index + 1)
