@@ -2,20 +2,29 @@
   "name": "@nmsn/md-maker",
   "version": "0.0.1",
   "description": "Generate markdown based on js configuration.",
-  "main": "lib/index.js",
+  "main": "./lib/index.js",
+  "module": "./es/index.js",
+  "types": "./es/index.d.ts",
+  "unpkg": "./dist/index.js",
+  "exports": {
+    ".": {
+      "require": "./lib/index.js",
+      "import": "./es/index.js",
+      "types": "./es/index.d.ts"
+    }
+  },
   "sideEffects": false,
   "type": "module",
   "files": [
-    "lib/"
+    "dist",
+    "lib",
+    "es",
+    "package.json",
+    "README.md"
   ],
-  "types": "lib/index.d.ts",
-  "typings": "lib/index.d.ts",
   "scripts": {
     "prepare": "husky install",
-    "build:clean": "tsc --build --clean",
-    "build:es": "tsc",
-    "build:watch": "tsc --watch",
-    "build": "npm run build:clean && npm run build:es",
+    "build": "rollup -c",
     "release": "npm run build && rltb"
   },
   "repository": {
@@ -34,6 +43,8 @@
   },
   "homepage": "https://github.com/nmsn/md-maker#readme",
   "devDependencies": {
+    "@rollup/plugin-commonjs": "^25.0.2",
+    "@rollup/plugin-node-resolve": "^15.1.0",
     "@types/node": "^20.1.1",
     "@typescript-eslint/eslint-plugin": "^5.47.0",
     "@typescript-eslint/parser": "^5.47.0",
@@ -44,6 +55,9 @@
     "lint-staged": "^13.1.0",
     "prettier": "^2.8.1",
     "release-toolbox": "0.2.0",
+    "rollup": "^3.26.2",
+    "rollup-plugin-clear": "^2.0.7",
+    "rollup-plugin-typescript2": "^0.35.0",
     "tslib": "^2.4.1",
     "typescript": "^5.0.3"
   },
