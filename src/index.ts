@@ -1,3 +1,3 @@
-export { md } from './md.js';
+export { md } from './md';
 
-export { createMd, insertMd } from './utils.js';
+export { createMd, insertMd } from './utils';

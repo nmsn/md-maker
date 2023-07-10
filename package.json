@@ -5,7 +5,6 @@
   "main": "./lib/index.js",
   "module": "./es/index.js",
   "types": "./es/index.d.ts",
-  "unpkg": "./dist/index.js",
   "exports": {
     ".": {
       "require": "./lib/index.js",
@@ -16,7 +15,6 @@
   "sideEffects": false,
   "type": "module",
   "files": [
-    "dist",
     "lib",
     "es",
     "package.json",

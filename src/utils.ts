@@ -1,6 +1,6 @@
 import fs from 'fs';
 import path from 'path';
-import { LF } from './md.js';
+import { LF } from './md';
 
 type LineType = number | 'last';
 //往固定的行写入数据

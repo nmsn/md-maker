@@ -15,15 +15,10 @@ export default {
       file: 'lib/index.js',
       format: 'cjs',
     },
-    {
-      file: 'dist/index.js',
-      format: 'umd',
-      name: '@nmsn/md-maker',
-    },
   ],
   plugins: [
     clear({
-      targets: ['dist', 'lib', 'es'],
+      targets: ['lib', 'es'],
     }),
     typescript(),
     commonjs(),
