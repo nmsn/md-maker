@@ -1,3 +1,3 @@
-export { md } from './md';
+export { md, descriptor } from './md';
 
 export { createMd, insertMd } from './utils';
