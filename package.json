@@ -1,6 +1,6 @@
 {
   "name": "@nmsn/md-maker",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "description": "Generate or insert markdown based on js configuration.",
   "main": "./lib/index.js",
   "module": "./es/index.js",
