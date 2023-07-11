@@ -123,4 +123,5 @@ export const descriptor = {
   bold,
   italic,
   code,
+  link,
 };
